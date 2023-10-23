@@ -25,15 +25,6 @@ The asynchronous function invocation is where the AI call occurs. The result of 
 
 Whilst the back end is waiting for the AI API to return a result, the app's front end periodically polls it's backend until the result is available. This is done by sending a `pollJobResult` [invoke](https://developer.atlassian.com/platform/forge/custom-ui-bridge/invoke/#invoke) request. The implementation of this request simply involves attempting to retrieve the results from [Forge Storage](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/#storage-api) with query to match all items (Issues) whose key starts with jobId. The UI passes the job ID so the back end knows the key of the storage records to match with. 
 
-This pattern is illustrated by the following sequence diagram:
-
-![Forge async job pattern sequence diagram](/forge-async-job-pattern.png "Forge async job pattern sequence diagram")
-
-## Limitations and improvements
-
-* The app doesn't actually create or modify sprints since it doesn't contribute to the goal of the app which is is to explain how to manage long running AI tasks.
-* For simplicity, the app mainly implements "happy paths". A commercial quality app should ensure error conditions are properly handled.
-* One particular known error condition involves the AI API returning a response that is not JSON formatted. This seems to occur from time to time and could be reduced by improving the prompt.
 
 ## Setup
 
@@ -43,85 +34,6 @@ Run `forge variables set --encrypt OPEN_API_KEY {your-open-ai-key}` and deploy w
 
 This section defines the prompt used to request the issue storypoints suggestion. The prompt and the AI process may need to be optimised.
 
-### Current prompt format
-
-The following is a JSON formatted list of open issues in a Jira backlog where the field "key" is a unique identifier of the issue and the field "summary" is the summary of the issue and the field "storypoints" is an estimate of the relative effort to implement the issue:
-
-[{
-  "key: "PS-1",
-  "summary: "Form to capture new types of products",
-  "storypoints": 3
-}, {
-  "key: "PS-2",
-  "summary: "Define the initial database schema",
-  "storypoints": 5
-}, {
-  "key: "PS-3",
-  "summary: "Research what type of database the Pet Shop application should use",
-  "storypoints": 1
-}, {
-  "key: "PS-4",
-  "summary: "Research what the main use cases are for the Pet Shop application",
-  "storypoints": 3
-}, {
-  "key: "PS-5",
-  "summary: "Design the API for web client and server interactions",
-  "storypoints": 5
-}, {
-  "key: "PS-6",
-  "summary: "Replace the mock API implementation with a real implementation",
-  "storypoints": 3
-}, {
-  "key: "PS-7",
-  "summary: "Create the API with a mock implementation",
-  "storypoints": 1
-}, {
-  "key: "PS-8",
-  "summary: "Implement the home page",
-  "storypoints": 5
-}, {
-  "key: "PS-9",
-  "summary: "Design the home page",
-  "storypoints": 3
-}, {
-  "key: "PS-10",
-  "summary: "Define the different kinds of user groups needed",
-  "storypoints": 1
-}, {
-  "key: "PS-11",
-  "summary: "Add a search capability to the user experience",
-  "storypoints": 3
-}, {
-  "key: "PS-12",
-  "summary: "Enhance the API with a search function",
-  "storypoints": 3
-}, {
-  "key: "PS-13",
-  "summary: "Define the types of entities and the relationships between them that will need to be stored in the database",
-  "storypoints": 1
-}, {
-  "key: "PS-14",
-  "summary: "Define the scopes required for the API",
-  "storypoints": 5
-}, {
-  "key: "PS-15",
-  "summary: "Research whether REST or GraphQL would be a better fit for the type of API",
-  "storypoints": 3
-}, {
-  "key: "PS-16",
-  "summary: "Create a regression test for the search functionality",
-  "storypoints": 1
-}, {
-  "key: "PS-17",
-  "summary: "Demonstrate the API capabilities to stakeholders",
-  "storypoints": 1
-}, {
-  "key: "PS-18",
-  "summary: "Demonstrate the initial user experience to stakeholders",
-  "storypoints": 3
-}]
-
-Return JSON formatted string representing an array of issue objects and suggest storypoints based on team velocity average (example 10) and issue summary description and/or goal. Each issue object contains a field named "key" identifying the issue key. Do not return any other text other than the JSON.
 
 ## Screenshots
 
@@ -136,6 +48,10 @@ Forge cli commands >
 Combogeist Application Codebase >
 
 ![Application Codebase](./screenshots/combogeist-ts-tsx-codeset.png)
+
+Combogeist OpenAI Story Points Estimation >
+
+![Application Codebase](./screenshots/combogeist94-openai-story-points-estimation.png)
 
 Combogeist Application production >
 
