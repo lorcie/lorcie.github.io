@@ -3,7 +3,7 @@
 
 This app demonstrates a Forge apps for **Codegeist Challenge AI**. It also delegates AI processing to an asynchronous task such that it may be able to benefit from a longer runtime timeout and therefore be more resilient to expensive AI API requests.
 
-If this is all a bit new to you, you may also like these other example apps and tutorials:
+If needed, here are some other example apps and tutorials:
 * [Getting started: creating a hello world app in Forge](https://developer.atlassian.com/platform/forge/getting-started/)
 * [The basics of building a Forge AI app](https://blog.developer.atlassian.com/forge-ai-basics/)
 
