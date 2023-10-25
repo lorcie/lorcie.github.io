@@ -97,7 +97,7 @@ await storage.query().where('key', startsWith(jobId)).getMany()
 
 **forge logs**  : displays Application logs on windows  console
 
-**forge variables** set | list [ –e environment ] : enables to set/list application environment variables used during running
+**forge variables** set [or list] [ –e environment ] : enables to set/list application environment variables used during running
 
 **forge settings** : manages settings such as default-environment
 
@@ -105,6 +105,7 @@ await storage.query().where('key', startsWith(jobId)).getMany()
 
 **forge install**  [ -e environment ] : enables to install application on various environments : development (default), staging, production
 
+**forge uninstall** : enables to select and uninstall current already installed application from your local Atlassian environment
 
 
 # 5. List of Modules (Atlaskit and Forge) used for the Frontend Development <a name="list-modules-frontend-dev"></a>
@@ -143,7 +144,7 @@ This document has presented Forge App Development Experience covering:
 
 Windows OS Laptop development if not using Docker Desktop (for license reason)
 
-=> Takeaway 1 : Forge App can be developed with **Forge Cli** +  Docker on **WSL** (Windows for Linux Subsystem) Linux such as ****Debian
+=> Takeaway 1 : Forge App can be developed with **Forge Cli** +  Docker on **WSL** (Windows for Linux Subsystem) Linux such as **Debian**
 
 Forge Cli Libraries Installation with **npm**
 
